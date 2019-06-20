@@ -31,6 +31,9 @@ func setStruct(ts map[reflect.Type]bool, t reflect.Type, v reflect.Value) {
 }
 
 func setValue(ts map[reflect.Type]bool, t reflect.Type, v reflect.Value) {
+	if !v.CanSet() {
+		return
+	}
 	switch t.Kind() {
 	case reflect.Map:
 		m := reflect.MakeMap(t)
